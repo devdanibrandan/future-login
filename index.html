@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practicando HTML</title>
+  </head>
+  <body>
+    
+    <div>
+        <form id="loginForm">
+          <label for="usuario">Usuario:</label>
+          <input type="text" id="usuario" name="usuario" required>
+          <br>
+          <label for="contrasena">Contraseña:</label>
+          <input type="password" id="contrasena" name="contrasena" required>
+          <br>
+          <button type="submit" class="btn-form">Iniciar sesión</button>
+        </form>
+    </div>
+
+    <div>
+      <table id="tablaUsuarios" border="1" style="margin-top:20px; display:none;">
+        <tr>
+          <th>Usuario</th>
+          <th>Contraseña</th>
+          <th>Editar</th>
+        </tr>
+      </table>
+    </div>
+
+    <!-- formulario de edicion -->
+    <div>
+        <form id="editForm" style="display: none;">
+          <label for="usuario">Usuario:</label>
+          <input type="text" id="edit-user" name="usuario" required>
+          <br>
+          <label for="contrasena">Editar Contraseña:</label>
+          <input type="password" id="edit-pass" name="contrasena" required>
+          <br>
+          
+          <div class="btn-edit">
+            <button class="guardarDatos" type="button">Guardar</button>
+            <button class="cerrarForm" type="button">Cerrar</button>
+          </div>
+
+        </form>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+
+  </body>
+</html>

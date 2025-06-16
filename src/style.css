@@ -1,0 +1,130 @@
+/* div {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+} */
+
+/* formulario */
+form {
+  max-width: 350px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 24px 20px;
+  background: #f7f7f7;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.15);
+}
+form {
+  background: linear-gradient(135deg, #e0eafc, #cfdef3);
+}
+form {
+  border-radius: 20px;
+}
+form {
+  border-radius: 20px;
+}
+/* Etiquetas */
+label {
+  display: block;
+  margin-bottom: 6px;
+  color: #34495e;
+  font-weight: bold;
+}
+
+/* Campos de entrada */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  margin-bottom: 16px;
+  border: 1px solid #bfc9d1;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: border-color 0.2s;
+}
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #2980b9;
+  outline: none;
+}
+
+/* Botón */
+.btn-form {
+  width: 100%;
+  padding: 10px;
+  background: #2980b9;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
+.btn-form:hover {
+  background: #1c5980;
+}
+.btn-form {
+  background: linear-gradient(90deg, #2980b9, #6dd5fa);
+}
+
+/* Estilo para la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+}
+
+.btn-tabla {
+  background: none;
+  color: #2980b9;
+  border: 1px solid #2980b9;
+  border-radius: 3px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #2980b9;
+  color: #fff;
+}
+
+tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+
+.btn-edit button {
+
+  width: 100%;
+  padding: 10px;
+  background: #2980b9;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+
+}
+
+.btn-edit {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.btn-edit button:hover {
+  background: #1c5980;
+}
+.btn-edit button {
+  background: linear-gradient(90deg, #2980b9, #6dd5fa);
+}
