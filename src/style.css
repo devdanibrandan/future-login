@@ -1,11 +1,4 @@
-/* div {
-  margin-bottom: 20px;
-  padding: 15px;
-  background-color: #ffffff;
-  border-radius: 8px;
-} */
 
-/* formulario */
 form {
   max-width: 350px;
   width: 100%;
@@ -127,4 +120,12 @@ tr:nth-child(even) {
 }
 .btn-edit button {
   background: linear-gradient(90deg, #2980b9, #6dd5fa);
+}
+
+#formTitle {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  font-family: Arial, sans-serif;
 }

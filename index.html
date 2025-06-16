@@ -7,48 +7,30 @@
     <title>Practicando HTML</title>
   </head>
   <body>
-    
     <div>
-        <form id="loginForm">
-          <label for="usuario">Usuario:</label>
-          <input type="text" id="usuario" name="usuario" required>
-          <br>
-          <label for="contrasena">Contraseña:</label>
-          <input type="password" id="contrasena" name="contrasena" required>
-          <br>
-          <button type="submit" class="btn-form">Iniciar sesión</button>
-        </form>
+      <form id="loginForm" data-action="login">
+        <h2 id="formTitle"> </h2>
+        <label for="usuario">Usuario:</label>
+
+        <input type="text" placeholder="Ingrese Un Nombre de Usuario" id="usuario" name="usuario" required>
+        <br>
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" placeholder="Ingrese Una Contraseña" id="contrasena" name="contrasena" required>
+        <br>
+        <button type="submit" class="btn-form" id="formButton"> Crear Usuario </button>
+      </form>
     </div>
 
     <div>
       <table id="tablaUsuarios" border="1" style="margin-top:20px; display:none;">
         <tr>
+          <th>ID</th>
           <th>Usuario</th>
           <th>Contraseña</th>
           <th>Editar</th>
         </tr>
       </table>
     </div>
-
-    <!-- formulario de edicion -->
-    <div>
-        <form id="editForm" style="display: none;">
-          <label for="usuario">Usuario:</label>
-          <input type="text" id="edit-user" name="usuario" required>
-          <br>
-          <label for="contrasena">Editar Contraseña:</label>
-          <input type="password" id="edit-pass" name="contrasena" required>
-          <br>
-          
-          <div class="btn-edit">
-            <button class="guardarDatos" type="button">Guardar</button>
-            <button class="cerrarForm" type="button">Cerrar</button>
-          </div>
-
-        </form>
-    </div>
-
     <script type="module" src="/src/main.js"></script>
-
   </body>
 </html>

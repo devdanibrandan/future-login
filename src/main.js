@@ -1,60 +1,92 @@
-import './style.css'
+import './style.css';
+import { state } from './state.js';
+
+
+function generarId() {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
+}
 
 const form = document.getElementById('loginForm');
 const tabla = document.getElementById('tablaUsuarios');
 
-const editUsuario = document.getElementById('edit-user');
-const editPass = document.getElementById('edit-pass');
+let filaActual = null;
+let usuarioActual = null;
 
-const guardarEdit = document.querySelector('.guardarDatos');
-const btnCerrar = document.querySelector('.cerrarForm');
+// Cambia el form a lo que pide el qliao de ale....
+function setEditMode(usuarioObj, fila) {
+  document.getElementById('formTitle').textContent = 'Editar información';
+  document.getElementById('formButton').textContent = 'Guardar cambios';
+  form.setAttribute('data-action', 'edit');
+  document.getElementById('usuario').value = usuarioObj.name;
+  document.getElementById('contrasena').value = usuarioObj.pass;
+  filaActual = fila;
+  usuarioActual = usuarioObj;
+}
 
+// Cambiar el formulario a modo login
+function setLoginMode() {
+  document.getElementById('formTitle').textContent = 'Crear Usuario';
+  document.getElementById('formButton').textContent = 'Crear Nuevo Usuario';
+  form.setAttribute('data-action', 'login');
+  document.getElementById('usuario').value = '';
+  document.getElementById('contrasena').value = '';
+  filaActual = null;
+  usuarioActual = null;
+}
 
-// para mi futuro... podria almacenar los datos del usuario seleccionado en una fila... let filaActual = null;
+// agregar una fila a la tabla y configuro el botón Editar
+function agregarFila(usuarioObj) {
+  const fila = tabla.insertRow(-1);
+  fila.insertCell(0).textContent = usuarioObj.id;
+  fila.insertCell(1).textContent = usuarioObj.name;
+  fila.insertCell(2).textContent = usuarioObj.pass;
 
-  form.addEventListener('submit', function(e) {
-    
-    e.preventDefault();
-    const usuario = document.getElementById('usuario').value;
-    const contrasena = document.getElementById('contrasena').value; // No mostrar
-    const btnEditar = document.createElement('button');
-    btnEditar.textContent = 'Editar';
-    btnEditar.className = 'btn-tabla';
+  const celdaBoton = fila.insertCell(3);
+  const btnEditar = document.createElement('button');
+  btnEditar.textContent = 'Editar';
+  btnEditar.className = 'btn-tabla';
+  celdaBoton.appendChild(btnEditar);
 
-    const fila = tabla.insertRow(-1);
-    fila.insertCell(0).textContent = usuario;
-    fila.insertCell(1).textContent = contrasena;
-
-    //se usa fila que contiene tabla.inserRow que agrega el elemento en la tabla.
-    const celdaBoton = fila.insertCell(2);
-    //agrego el elemento btn mediante el appenmdChild al final de los elementos padres.
-    celdaBoton.appendChild(btnEditar);
-    
-    tabla.style.display = '';
-
-    form.reset();
-
-    btnEditar.addEventListener('click', function() {
-
-      const nombreUsuario = fila.cells[0].textContent;
-      const passUsuario = fila.cells[1].textContent;
-      editUsuario.value = nombreUsuario;
-      editPass.value = passUsuario;
-      editForm.style.display = '';
-      
-    });
-
-    guardarEdit.addEventListener('click', function (){
-
-        fila.cells[1].textContent = editPass.value;
-
-      editForm.style.display = 'none';
-
-    });
-    
-    btnCerrar.addEventListener('click', function() {
-      editForm.style.display = 'none';
-    });
-
+  btnEditar.addEventListener('click', function() {
+    setEditMode(usuarioObj, fila);
   });
+}
 
+// Cargar usuarios guardados al iniciar
+state.usuarios.forEach(agregarFila);
+
+// agregar usuario nuevo o editar
+form.addEventListener('submit', function(e) {
+
+  e.preventDefault();
+
+  const action = form.getAttribute('data-action');
+  const usuario = document.getElementById('usuario').value;
+  const contrasena = document.getElementById('contrasena').value;
+
+  if (action === 'login') {
+    // Agregar usuario nuevo
+    const usuarioObj = { 
+          id: generarId(),
+          name: usuario, 
+          pass: contrasena 
+        };
+        state.usuarios.push(usuarioObj);
+        localStorage.setItem('usuarios', JSON.stringify(state.usuarios));
+        agregarFila(usuarioObj);
+        tabla.style.display = '';
+        form.reset();
+  } else if (action === 'edit' && usuarioActual && filaActual) {
+    // Editar usuario existente..
+    usuarioActual.name = usuario;
+    usuarioActual.pass = contrasena;
+    filaActual.cells[1].textContent = usuario;
+    filaActual.cells[2].textContent = contrasena;
+    localStorage.setItem('usuarios', JSON.stringify(state.usuarios));
+    setLoginMode();
+    form.reset();
+  }
+});
+
+// Inicializa el formulario en modo login
+setLoginMode();
